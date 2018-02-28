@@ -15,6 +15,7 @@ group :development, :test do
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 gem 'rspec-rails', '3.7.2'
+gem 'rails-controller-testing', '1.0.2'
 end
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -45,6 +46,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   #gem 'selenium-webdriver'
+  
 end
 
 group :development do
