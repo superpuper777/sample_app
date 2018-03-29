@@ -7,6 +7,10 @@ before_action :correct_user, only: [ :edit, :update]
     
   end
 
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -37,6 +41,12 @@ before_action :correct_user, only: [ :edit, :update]
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted."
+    redirect_to users_url
+  end
+
 private
   def user_params
 	params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -54,5 +64,5 @@ def correct_user
   @user = User.find(params[:id])
   redirect_to(root_url) unless current_user?(@user)
 end
-    end
+    
 end

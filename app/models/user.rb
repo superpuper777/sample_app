@@ -1,6 +1,20 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer         not null, primary key
+#  name            :string
+#  email           :string
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  password_digest :string
+#  remember_token  :string
+#  remember_digest :string
+#
+
 class User < ApplicationRecord
   attr_accessor :remember_token
-  before_save { self.email = email.downcase! }
+  before_save { self.email = self.email.to_s.downcase }
   before_create :create_remember_token
 
   validates :name,  presence: true, length: { maximum: 50 }
@@ -20,13 +34,12 @@ class User < ApplicationRecord
   end
 
   # Returns a random token.
-  def User.new_token
+   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
 
-   def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
   end
 
   # Returns true if the given token matches the digest.
@@ -39,5 +52,11 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  private
+
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
 
 end
