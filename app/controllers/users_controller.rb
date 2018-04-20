@@ -28,11 +28,10 @@ before_action :admin_user, only: :destroy
   end
 
   def edit
-      @user = User.find(params[:id])
+      #@user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
