@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
   end
+  resources :account_activations, only: [:edit]
   resources :sessions, only: [:new, :create, :destroy] #нужна ли эта строка? в листинге 11.1 она отстутствует
   resources :account_activations, only: [:edit]
 end
