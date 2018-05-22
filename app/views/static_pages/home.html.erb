@@ -1,11 +1,21 @@
-<h1>Sample App</h1>
-    <p>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
-    </p>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+     <div class="col-md-8">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+<% else %>
 
-    <div class="center hero-unit">
+    <div class="center jumbotron">
   <h1>Welcome to the Sample App</h1>
 
   <h2>
@@ -18,3 +28,6 @@
 </div>
 
 <%= link_to image_tag("rails.png", alt: "Rails"), 'https://www.google.by/search?client=safari&rls=en&dcr=0&tbm=isch&sa=1&ei=45RpWpSsKM-dkwXHvJHYDg&q=rails+png&oq=rails+&gs_l=psy-ab.1.1.0l6j0i30k1l4.5680.5680.0.8455.1.1.0.0.0.0.388.388.3-1.1.0....0...1c.1.64.psy-ab..0.1.388....0.CskLoLS9JvM#imgdii=PpLsURe-yscOuM:&imgrc=hMngosTKNreXFM:' %>
+
+
+<% end %>

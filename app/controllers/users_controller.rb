@@ -4,6 +4,7 @@ before_action :correct_user, only: [ :edit, :update]
 before_action :admin_user, only: :destroy
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
     redirect_to root_url and return unless true
     
   end
