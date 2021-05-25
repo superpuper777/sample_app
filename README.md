@@ -1,4 +1,3 @@
-# README
 # Ruby on Rails Tutorial: my sample_app
 
 Это первое приложение для
